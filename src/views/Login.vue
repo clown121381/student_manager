@@ -30,8 +30,7 @@
 
 <script>
     import axios from '@/axios'
-    import {setCookie} from "@/util/cookieUtils";
-
+    import PubSub from 'pubsub-js'
     export default {
         name: "Login.vue",
         data() {
@@ -69,7 +68,8 @@
                             let data = resp.data;
                             if(data.requestflag){
                                 this.submitButton = true;
-                                setCookie('username',data.name);
+                                PubSub.publish('loginType',this.ruleForm.type);
+                                PubSub.publish('afterLogin',data);
                                 this.$message(data.message)
                             }else{
                                 this.$message(data.message)

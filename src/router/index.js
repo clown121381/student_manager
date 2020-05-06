@@ -4,6 +4,8 @@ import ChooseTeacher from "@/views/ChooseTeacher";
 import ImportStudent from "@/views/ImportStudent";
 import ViewChoosed from "@/views/ViewChoosed";
 import Login from "@/views/Login";
+import ListStudents from "@/views/ListStudents";
+import ListTeachers from "@/views/ListTeachers";
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,20 @@ export default new VueRouter({
             path:'/Login',
             name:Login,
             component: Login
-        }
+        },
+        {
+            path:'/ListStudents',
+            name:ListStudents,
+            component: ListStudents
+        },
+        {
+            path:'/ListTeachers',
+            name:ListTeachers,
+            component: ListTeachers
+        },
+        {
+            path:'/',
+            redirect: '/Login'
+        },
     ]
 })

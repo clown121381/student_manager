@@ -13,9 +13,10 @@
 
 <script>
     import xlsx from 'xlsx';
-    import axios from '@/axios'
+    // import axios from '@/axios'
     export default {
         name: "ChooseStudentsExcel.vue",
+        props: ['nextActive','setExcelData'],
         data() {
             return {
                 excelFile:{},
@@ -62,27 +63,32 @@
                 this.excelFile.students = students;
                 this.submitdisable = false;
             },
-            //向后端提交数据json
+            //数据解析
             handleSubmit(){
-                this.$message('正在上传数据请稍后');
+                this.$message('数据已解析');
                 //立刻disable提交按钮
                 this.submitdisable = true;
-                let url = 'importStudent';
-                axios.post(url,{
-                    "teacher": this.excelFile.teacher,
-                    "course": this.excelFile.course,
-                    "students": this.excelFile.students
-                }).then(resp => {
-                    console.log(resp)
-                    let data = resp.data;
-                    if(data.requestflag){
-                        this.$message(data.message)
-                    }else{
-                        this.$message('err:'+data.message)
-                    }
-                }).catch(err => {
-                    this.$message(err)
-                });
+
+                //提交数据给父组件
+                this.nextActive();
+                this.setExcelData(this.excelFile);
+
+                // let url = 'importStudent';
+                // axios.post(url,{
+                //     "teacher": this.excelFile.teacher,
+                //     "course": this.excelFile.course,
+                //     "students": this.excelFile.students
+                // }).then(resp => {
+                //     console.log(resp)
+                //     let data = resp.data;
+                //     if(data.requestflag){
+                //         this.$message(data.message)
+                //     }else{
+                //         this.$message('err:'+data.message)
+                //     }
+                // }).catch(err => {
+                //     this.$message(err)
+                // });
             }
         }
     }
