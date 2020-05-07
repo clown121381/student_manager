@@ -43,7 +43,7 @@
         <el-col :span="8" :offset="1">
             <el-tag type="info">所有课程信息</el-tag>
             <el-table
-                    :data="tableCourses.slice((currentPageC-1)*pageSize,currentPageC*pageSize)"
+                    :data="tableCourses.slice((currentPageC-1)*pageSizeC,currentPageC*pageSizeC)"
                     border
                     style="width: 100%">
                 <el-table-column
@@ -145,11 +145,17 @@
             tableStudents:[],
             student: {},
             addStudent:true,
-            course:{},
+            course:{
+                id:'',
+                name:'',
+                weight:'',
+                totalScore:''
+            },
             teacher:{
                 id:''},
             addCourse:true,
             pageSize: 10,
+            pageSizeC: 3,
             currentPageC: 1,
             currentPage: 1,
         }),
@@ -252,12 +258,10 @@
                 this.addCourse = true;
                 if(this.course.name != '' && this.course.weight != '' && this.course.totalScore != ''){
                     axios.post(`updateCourse`,{
-                        "course":{
-                            "id":this.course.id,
-                            "name":this.course.name,
-                            "weight":this.course.weight,
-                            "totalScore":this.totalScore
-                        }
+                        "id":this.course.id,
+                        "name":this.course.name,
+                        "weight":this.course.weight,
+                        "totalScore":this.course.totalScore
                     })
                         .then(resp=>{
                             let data = resp.data;

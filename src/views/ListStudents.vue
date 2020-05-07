@@ -56,7 +56,10 @@
         name: "ListStudents.vue",
         data: ()=>({
             tableStudents:[],
-            student:{},
+            student:{
+                name:'',
+                schoolNumber:''
+            },
             pageSize:10,
             currentPage:1,
             addStudent:true
@@ -103,7 +106,7 @@
                 this.student = row;
             },
             doAddStudent(){
-                if(this.student.name.trim() == ''){
+                if(this.student.name.trim() == '' || this.student.schoolNumber.trim() == ''){
                     this.$message('学生姓名为空')
                     return;
                 }

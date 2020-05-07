@@ -18,9 +18,9 @@
                             <el-menu-item index="2-3" @click="routeToListCourses">课程管理</el-menu-item>
                             <el-submenu index="2-4">
                                 <template slot="title">其他管理</template>
-                                <el-menu-item index="2-4-1">选项1</el-menu-item>
-                                <el-menu-item index="2-4-2">选项2</el-menu-item>
-                                <el-menu-item index="2-4-3">选项3</el-menu-item>
+                                <el-menu-item index="2-4-1" @click="routeToStartChoose">启动互选功能</el-menu-item>
+                                <el-menu-item index="2-4-2" @click="routeToResetPassword">修改密码</el-menu-item>
+                                <el-menu-item index="2-4-3">查看学生选中名单</el-menu-item>
                             </el-submenu>
                         </el-submenu>
                         <el-menu-item index="2" @click="routeToChooseTeacher">学生选择导师</el-menu-item>
@@ -91,6 +91,12 @@ export default {
         },
         routeToListCourses(){
             this.$router.push('ListCourses')
+        },
+        routeToStartChoose(){
+            this.$router.push('StartChoose')
+        },
+        routeToResetPassword(){
+            this.$router.push('ResetPassword')
         },
         routeToMine(){
 
