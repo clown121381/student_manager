@@ -20,7 +20,7 @@
                                 <template slot="title">其他管理</template>
                                 <el-menu-item index="2-4-1" @click="routeToStartChoose">启动互选功能</el-menu-item>
                                 <el-menu-item index="2-4-2" @click="routeToResetPassword">修改密码</el-menu-item>
-                                <el-menu-item index="2-4-3">查看学生选中名单</el-menu-item>
+                                <el-menu-item index="2-4-3" @click="routeToViewChoosed">查看学生选中名单</el-menu-item>
                             </el-submenu>
                         </el-submenu>
                         <el-menu-item index="2" @click="routeToChooseTeacher">学生选择导师</el-menu-item>
@@ -98,9 +98,9 @@ export default {
         routeToResetPassword(){
             this.$router.push('ResetPassword')
         },
-        routeToMine(){
-
-        }
+        routeToViewChoosed(){
+            this.$router.push('ViewChoosed')
+        },
     }
 }
 </script>
