@@ -11,7 +11,6 @@
                             <el-select :disabled="submitButton" v-model="ruleForm.type" placeholder="选择用户类型">
                                 <el-option label="学生" value="student"></el-option>
                                 <el-option label="教师" value="teacher"></el-option>
-                                <el-option label="管理员" value="admin"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="用户密码" prop="password">
@@ -30,7 +29,7 @@
 
 <script>
     import axios from '@/axios'
-    import PubSub from 'pubsub-js'
+    import Cookies from 'js-cookie'
     export default {
         name: "Login.vue",
         data() {
@@ -68,8 +67,8 @@
                             let data = resp.data;
                             if(data.requestflag){
                                 this.submitButton = true;
-                                PubSub.publish('loginType',this.ruleForm.type);
-                                PubSub.publish('afterLogin',data);
+                                Cookies.set('type',this.ruleForm.type);
+                                Cookies.set('currentUser',this.ruleForm.schoolNumber);
                                 this.$message(data.message)
                             }else{
                                 this.$message(data.message)
